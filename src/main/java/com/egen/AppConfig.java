@@ -13,4 +13,5 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 public class AppConfig extends WebMvcConfigurationSupport {
 	//TODO: override addCorsMappings Method to allow cross origin request to API
 
+
 }
