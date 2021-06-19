@@ -45,10 +45,9 @@ public class JPAConfig {
 	}
 
 	@Bean
-	public PlatformTransactionManager txmanager(EntityManagerFactory em){
+	public PlatformTransactionManager transactionManager(EntityManagerFactory em){
 		JpaTransactionManager txm=new JpaTransactionManager(em);
 		return txm;
-
 	}
 
 }
