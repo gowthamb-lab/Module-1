@@ -1,6 +1,6 @@
 package com.egen;
 
-import org.jetbrains.annotations.Nullable;
+//import org.jetbrains.annotations.Nullable;
 //import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -9,12 +9,12 @@ public class AppInitialize extends AbstractAnnotationConfigDispatcherServletInit
  * implement the following methods
  */
 
-@Nullable
+//@Nullable
 @Override
 protected Class<?>[] getRootConfigClasses() {
-	return new Class[]{AppConfig.class};
+	return new Class[]{AppConfig.class, JPAConfig.class};
 }
-	@Nullable
+	//@Nullable
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
 		return new Class[0];

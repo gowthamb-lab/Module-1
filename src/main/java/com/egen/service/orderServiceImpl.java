@@ -38,8 +38,8 @@ public class orderServiceImpl implements orderService{
     }
 
     @Override
-    public List<Order> getAllOrdersWithInterval(ZonedDateTime startTime, ZonedDateTime endTime) {
-        List<Order> l1= orderRepo.getAllOrdersWithInterval(startTime,endTime);
+    public List<Order> getAllOrdersWithInInterval(ZonedDateTime startTime, ZonedDateTime endTime) {
+        List<Order> l1= orderRepo.getAllOrdersWithInInterval(startTime,endTime);
         if(l1.size()==0){
             throw new OrderNotFoundException("No order is available");
         }
@@ -49,7 +49,7 @@ public class orderServiceImpl implements orderService{
     }
 
     @Override
-    public List<Order> top100OrdersWithHighestDollarAmountInZip(String zip) {
+    public List<Order> top10OrdersWithHighestDollarAmountInZip(String zip) {
         return null;
     }
 

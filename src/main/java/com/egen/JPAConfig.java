@@ -1,6 +1,7 @@
 package com.egen;
 
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -17,45 +18,37 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class JPAConfig {
 
-//	@Bean
-	public LocalContainerEntityManagerFactoryBean emf() {
-		//TODO: configure emf
+	@Bean
+	public LocalContainerEntityManagerFactoryBean emf()
+	{
 		LocalContainerEntityManagerFactoryBean emf=new LocalContainerEntityManagerFactoryBean();
-		emf.setDataSource(null);
+		emf.setDataSource(getDataSource());
 		emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-		Properties properties=new Properties();
+		emf.setPackagesToScan("com.egen.model.entity");
+		Properties properties= new Properties();
+		properties.put("hibernate.dialect","org.hibernate.dialect.MySQL57Dialect");
 		properties.put("hibernate.hbm2ddl.auto","create");
 		properties.put("hibernate.show_sql","true");
-
 		emf.setJpaProperties(properties);
-
 		return emf;
 	}
 
-//	@Bean
-	public DataSource dataSource() {
-		//TODO: configure data source bean
-
+	@Bean
+	public DataSource getDataSource(){
 		DriverManagerDataSource ds=new DriverManagerDataSource();
 		ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		ds.setUrl("jdbc:mysql://localhost:3306/employee");
 		ds.setUsername("root");
 		ds.setPassword("50344484");
-		return  ds;
+		return ds;
+
 	}
 
-//	@Bean
-	public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
-		//TODO: configure transaction manager
-		JpaTransactionManager txm= new JpaTransactionManager(emf);
+	@Bean
+	public PlatformTransactionManager txmanager(EntityManagerFactory em){
+		JpaTransactionManager txm=new JpaTransactionManager(em);
 		return txm;
 
-
-
 	}
 
-	private Properties jpaProperties() {
-		//TODO: configure jpa properties
-		return null;
-	}
 }

@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 public class Customer {
@@ -16,10 +17,12 @@ public class Customer {
     @Column(unique = true)
     private String email;
     private String phone_no;
-    @OneToMany
-    private List<Address> shippingAddress;
-    @OneToMany
-    private List<Address> billingAddress;
+
+    public Customer(){
+
+        customerId= UUID.randomUUID().toString();
+    }
+
 
     public String getCustomerId() {
         return customerId;
@@ -61,19 +64,5 @@ public class Customer {
         this.phone_no = phone_no;
     }
 
-    public List<Address> getShippingAddress() {
-        return shippingAddress;
-    }
 
-    public void setShippingAddress(List<Address> shippingAddress) {
-        this.shippingAddress = shippingAddress;
-    }
-
-    public List<Address> getBillingAddress() {
-        return billingAddress;
-    }
-
-    public void setBillingAddress(List<Address> billingAddress) {
-        this.billingAddress = billingAddress;
-    }
 }
